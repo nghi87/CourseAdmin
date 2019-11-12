@@ -31,7 +31,7 @@ import com.liferay.course.service.base.CourseServiceBaseImpl;
  * @see com.liferay.course.service.CourseServiceUtil
  */
 public class CourseServiceImpl extends CourseServiceBaseImpl {
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this interface directly. Always use {@link com.liferay.course.service.CourseServiceUtil} to access the course remote service.

@@ -5,17 +5,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://liferay.com/tld/security" prefix="liferay-security" %>
 
-<%@page import="com.liferay.course.service.CourseLocalServiceUtil"%>
-<%@page import="com.liferay.portal.kernel.dao.search.SearchEntry" %>
-<%@page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
-<%@page import="com.liferay.course.model.Course"%>
-<%@page import="com.liferay.portal.kernel.util.ParamUtil" %>
-<%@page import="com.liferay.portal.kernel.util.HtmlUtil" %>
-<%@page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@page import="com.liferay.course.service.permission.CourseModelPermission" %>
-<%@page import="com.liferay.course.service.permission.CoursePermission" %>
-<%@page import="com.liferay.portal.security.permission.ActionKeys" %>
-<%@page import="com.liferay.course.util.WebKeys" %>
+<%@ page import="com.liferay.course.model.Course" %><%@
+page import="com.liferay.course.service.CourseLocalServiceUtil" %><%@
+page import="com.liferay.course.service.permission.CourseModelPermission" %><%@
+page import="com.liferay.course.service.permission.CoursePermission" %><%@
+page import="com.liferay.course.util.WebKeys" %><%@
+page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
+page import="com.liferay.portal.security.permission.ActionKeys" %>
 
 <portlet:defineObjects />
 <theme:defineObjects />

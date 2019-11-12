@@ -14,9 +14,6 @@
 
 package com.liferay.course.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
 import com.liferay.course.CourseDurationException;
 import com.liferay.course.CourseLecturerException;
 import com.liferay.course.CourseNameException;
@@ -29,6 +26,9 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * The implementation of the course local service.
@@ -49,43 +49,11 @@ import com.liferay.portal.service.ServiceContext;
  * @see com.liferay.course.service.CourseLocalServiceUtil
  */
 public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 * 
-	 * Never reference this interface directly. Always use {@link
-	 * com.liferay.course.service.CourseLocalServiceUtil} to access the course
-	 * local service.
-	 */
-	public List<Course> getCourses(long groupId) throws SystemException {
-		return coursePersistence.findByGroupId(groupId);
-	}
-
-	public List<Course> getCourses(long groupId, int start, int end)
-			throws SystemException {
-		return coursePersistence.findByGroupId(groupId, start, end);
-	}
-
-	protected void validate(String name, String description, String lecturer,
-			int duration, boolean status) throws PortalException {
-		if (Validator.isNull(name)) {
-			throw new CourseNameException();
-		}
-		if (Validator.isNull(lecturer)) {
-			throw new CourseLecturerException();
-		}
-		if (Validator.isNull(duration)) {
-			throw new CourseDurationException();
-		}
-		if (Validator.isNull(status)) {
-			throw new CourseStatusException();
-		}
-		// TODO:
-	}
 
 	public Course addCourse(long userId, String name, String description,
-			String lecturer, int duration, boolean status,
-			ServiceContext serviceContext) throws PortalException,
-			SystemException {
+			String lecturer, int duration, boolean status, ServiceContext serviceContext)
+					throws PortalException, SystemException {
+
 		long groupId = serviceContext.getScopeGroupId();
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -118,11 +86,13 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 
 		resourceLocalService.addResources(user.getCompanyId(), groupId, userId,
 				Course.class.getName(), courseId, false, true, true);
+
 		return course;
 	}
 
 	public Course deleteCourse(long courseId, ServiceContext serviceContext)
 			throws PortalException, SystemException {
+
 		Course course = getCourse(courseId);
 
 		resourceLocalService.deleteResource(serviceContext.getCompanyId(),
@@ -134,10 +104,15 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 		return course;
 	}
 
+	public List<Course> getCourses(long groupId, int start, int end)
+			throws SystemException {
+		return coursePersistence.findByGroupId(groupId, start, end);
+	}
+
 	public Course updateCourse(long userId, long courseId, String name,
-			String description, String lecturer, int duration, boolean status,
-			ServiceContext serviceContext) throws PortalException,
-			SystemException {
+			String description, String lecturer, int duration, boolean status, ServiceContext serviceContext)
+					throws PortalException, SystemException {
+
 		long groupId = serviceContext.getScopeGroupId();
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -168,5 +143,27 @@ public class CourseLocalServiceImpl extends CourseLocalServiceBaseImpl {
 				serviceContext.getGuestPermissions());
 
 		return course;
+	} public List<Course> getCourses(long groupId) throws SystemException {
+		return coursePersistence.findByGroupId(groupId);
 	}
+
+	protected void validate(String name, String description, String lecturer,
+			int duration, boolean status) throws PortalException {
+		if (Validator.isNull(name)) {
+			throw new CourseNameException();
+		}
+
+		if (Validator.isNull(lecturer)) {
+			throw new CourseLecturerException();
+		}
+
+		if (Validator.isNull(duration)) {
+			throw new CourseDurationException();
+		}
+
+		if (Validator.isNull(status)) {
+			throw new CourseStatusException();
+		}
+	}
+
 }

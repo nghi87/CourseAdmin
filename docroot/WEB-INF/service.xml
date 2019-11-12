@@ -21,23 +21,23 @@
 		<column name="userName" type="String"></column>
 		<column name="createDate" type="Date"></column>
 		<column name="modifiedDate" type="Date"></column>
-        <column name="name" type="String"></column>
-        <column name="description" type="String"></column>
-        <column name="lecturer" type="String"></column>
-        <column name="duration" type="int"></column>
-        <column name="status" type="boolean"></column>
-        <order by="asc">
-            <order-column name="name" order-by="asc" case-sensitive="true"></order-column>
-        </order>
-        <finder name="GroupId" return-type="Collection">
-            <finder-column name="groupId"></finder-column>
-        </finder>
+		<column name="name" type="String"></column>
+		<column name="description" type="String"></column>
+		<column name="lecturer" type="String"></column>
+		<column name="duration" type="int"></column>
+		<column name="status" type="boolean"></column>
+		<order by="asc">
+			<order-column name="name" order-by="asc" case-sensitive="true"></order-column>
+		</order>
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+		</finder>
 	</entity>
-    <exceptions>
-        <exception>CourseName</exception>
-        <exception>CourseDescription</exception>
-        <exception>CourseLecturer</exception>
-        <exception>CourseDuration</exception>
-        <exception>CourseStatus</exception>
-    </exceptions>
+	<exceptions>
+		<exception>CourseName</exception>
+		<exception>CourseDescription</exception>
+		<exception>CourseLecturer</exception>
+		<exception>CourseDuration</exception>
+		<exception>CourseStatus</exception>
+	</exceptions>
 </service-builder>

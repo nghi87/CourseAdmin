@@ -1,4 +1,4 @@
-<%@include file="/html/init.jsp"%>
+<%@ include file="/html/init.jsp" %>
 
 <%
 	String mvcPath = ParamUtil.getString(request, "mvcPath");
@@ -12,40 +12,40 @@
 <liferay-ui:icon-menu>
 
 	<c:if
-		test="<%=CoursePermission.contains(permissionChecker,
-							course.getCourseId(), ActionKeys.UPDATE)%>">
+		test="<%= CoursePermission.contains(permissionChecker,
+							course.getCourseId(), ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="courseId"
-				value="<%=String.valueOf(course.getCourseId())%>" />
+				value="<%= String.valueOf(course.getCourseId()) %>" />
 			<portlet:param name="mvcPath" value="/html/course/edit_course.jsp" />
 		</portlet:renderURL>
 
 		<liferay-ui:icon image="edit" message="Edit"
-			url="<%=editURL.toString()%>" />
+			url="<%= editURL.toString() %>" />
 	</c:if>
 	<c:if
-		test="<%=CoursePermission.contains(permissionChecker,
-							course.getCourseId(), ActionKeys.PERMISSIONS)%>">
+		test="<%= CoursePermission.contains(permissionChecker,
+							course.getCourseId(), ActionKeys.PERMISSIONS) %>">
 
 		<liferay-security:permissionsURL
-			modelResource="<%=Course.class.getName()%>"
-			modelResourceDescription="<%=course.getDescription()%>"
-			resourcePrimKey="<%=String.valueOf(course.getCourseId())%>"
+			modelResource="<%= Course.class.getName() %>"
+			modelResourceDescription="<%= course.getDescription() %>"
+			resourcePrimKey="<%= String.valueOf(course.getCourseId()) %>"
 			var="permissionsURL" />
 
-		<liferay-ui:icon image="permissions" url="<%=permissionsURL%>" />
+		<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
 
 	</c:if>
 	<c:if
-		test="<%=CoursePermission.contains(permissionChecker,
-							course.getCourseId(), ActionKeys.DELETE)%>">
+		test="<%= CoursePermission.contains(permissionChecker,
+							course.getCourseId(), ActionKeys.DELETE) %>">
 
 		<portlet:actionURL name="deleteCourse" var="deleteURL">
 			<portlet:param name="courseId"
-				value="<%=String.valueOf(course.getCourseId())%>" />
+				value="<%= String.valueOf(course.getCourseId()) %>" />
 		</portlet:actionURL>
 
-		<liferay-ui:icon-delete url="<%=deleteURL.toString()%>" />
+		<liferay-ui:icon-delete url="<%= deleteURL.toString() %>" />
 	</c:if>
 
 </liferay-ui:icon-menu>

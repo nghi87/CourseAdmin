@@ -6,7 +6,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
-
 public class CoursePermission {
 	public static void check(PermissionChecker permissionChecker,
 			long guestbookId, String actionId) throws PortalException,
@@ -25,6 +24,5 @@ public class CoursePermission {
 
 		return permissionChecker.hasPermission(course.getGroupId(),
 				Course.class.getName(), course.getCourseId(), actionId);
-
 	}
 }

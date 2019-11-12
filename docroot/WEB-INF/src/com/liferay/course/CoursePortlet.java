@@ -1,14 +1,5 @@
 package com.liferay.course;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-
 import com.liferay.course.model.Course;
 import com.liferay.course.service.CourseLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -22,6 +13,16 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
+import java.io.IOException;
+
+import java.util.List;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+
 /**
  * Portlet implementation class CoursePortlet
  */
@@ -29,6 +30,7 @@ public class CoursePortlet extends MVCPortlet {
 
 	public void addCourse(ActionRequest request, ActionResponse response)
 			throws PortalException, SystemException {
+
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				Course.class.getName(), request);
 
@@ -40,12 +42,10 @@ public class CoursePortlet extends MVCPortlet {
 		boolean status = ParamUtil.getBoolean(request, "status");
 
 		if (courseId > 0) {
-
 			try {
-
 				CourseLocalServiceUtil.updateCourse(serviceContext.getUserId(),
-						courseId, name, description, lecturer, duration,
-						status, serviceContext);
+						courseId, name, description, lecturer, duration, status,
+						serviceContext);
 
 				SessionMessages.add(request, "courseAdded");
 
@@ -69,9 +69,9 @@ public class CoursePortlet extends MVCPortlet {
 
 			} catch (Exception e) {
 				SessionErrors.add(request, e.getClass().getName());
-				
+
 				PortalUtil.copyRequestParameters(request, response);
-				
+
 				response.setRenderParameter("mvcPath",
 						"/html/course/edit_course.jsp");
 			}
@@ -80,7 +80,7 @@ public class CoursePortlet extends MVCPortlet {
 
 	@Override
 	public void render(RenderRequest request, RenderResponse response)
-			throws PortletException, IOException {
+			throws IOException, PortletException {
 		try {
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 					Course.class.getName(), request);
@@ -91,6 +91,7 @@ public class CoursePortlet extends MVCPortlet {
 
 			if (courses.size() == 0) {
 				long userId = serviceContext.getUserId();
+
 				for (int i = 1; i <= 5; i++) {
 					CourseLocalServiceUtil.addCourse(userId,
 							StringUtil.randomString(30),

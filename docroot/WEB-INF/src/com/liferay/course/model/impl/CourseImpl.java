@@ -24,7 +24,7 @@ package com.liferay.course.model.impl;
  * @author ces
  */
 public class CourseImpl extends CourseBaseImpl {
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. All methods that expect a course model instance should use the {@link com.liferay.course.model.Course} interface instead.
