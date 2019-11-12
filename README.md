@@ -8,4 +8,4 @@ Work on Liferay 6.2
 Using some AUI taglibs
 Using language files for localization
 Implement MVCPortlets
-
+Permission setting
